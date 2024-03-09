@@ -4,11 +4,12 @@ import { getRandomAccount } from "../helpers/getAccounts";
 
 export const login = async (page: Page) => {
   const account = await getRandomAccount();
-  console.log(`Loggin in as ${account.username}, ${account.password}...`);
+  console.log(`Loggin in as ${account.username}...`);
 
   const loginButton = await page.$("[data-testid=login-button]");
   if (!loginButton) {
-    throw new Error("Login button not found");
+    console.log("Login button not found");
+    return;
   }
   await loginButton.click();
   await delay(5000);
